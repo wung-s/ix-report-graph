@@ -23,12 +23,11 @@ class HomeContainer extends Component {
     })
   }
 
-  normalizeBySiteName = data => {
-    return data.reduce((res, e) => {
+  normalizeBySiteName = data =>
+    data.reduce((res, e) => {
       res[e.siteName] = e
       return res
     }, {})
-  }
 
   render() {
     return <Home {...this.state} />

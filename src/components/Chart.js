@@ -1,11 +1,7 @@
 import React from "react"
 import { Bar } from "react-chartjs-2"
 
-const getLabel = data => {
-  return Object.keys(data).map(e => {
-    return data[e].siteName
-  })
-}
+const getLabel = data => Object.keys(data).map(e => data[e].siteName)
 
 const dataFormation = reportsBySiteName => {
   const labels = getLabel(reportsBySiteName)
@@ -24,19 +20,17 @@ const dataFormation = reportsBySiteName => {
   return { labels, datasets }
 }
 
-const Chart = props => {
-  return (
-    <div>
-      <Bar
-        data={dataFormation(props.reportsBySiteName)}
-        width={100}
-        height={650}
-        options={{
-          maintainAspectRatio: false
-        }}
-      />
-    </div>
-  )
-}
+const Chart = props => (
+  <div>
+    <Bar
+      data={dataFormation(props.reportsBySiteName)}
+      width={100}
+      height={650}
+      options={{
+        maintainAspectRatio: false
+      }}
+    />
+  </div>
+)
 
 export default Chart
