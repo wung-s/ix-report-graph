@@ -1,6 +1,5 @@
 import React from "react"
 import { Bar } from "react-chartjs-2"
-import { Line } from "react-chartjs-2"
 
 const getLabel = data => {
   return Object.keys(data).map(e => {
@@ -36,7 +35,6 @@ const Chart = props => {
           maintainAspectRatio: false
         }}
       />
-      {/* <Line data={dataFormation(props.reportsBySiteName)} /> */}
     </div>
   )
 }
