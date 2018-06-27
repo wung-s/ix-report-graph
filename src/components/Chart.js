@@ -30,7 +30,7 @@ const Chart = props => {
       <Bar
         data={dataFormation(props.reportsBySiteName)}
         width={100}
-        height={350}
+        height={650}
         options={{
           maintainAspectRatio: false
         }}
