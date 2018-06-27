@@ -1,36 +1,44 @@
-import React, { Component } from "react"
+import React from "react"
 import { Bar } from "react-chartjs-2"
+import { Line } from "react-chartjs-2"
 
-const data = {
-  labels: ["January", "February", "March", "April", "May", "June", "July"],
-  datasets: [
-    {
-      label: "Report Dataset",
-      backgroundColor: "rgba(255,99,132,0.2)",
-      borderColor: "rgba(255,99,132,1)",
-      borderWidth: 1,
-      hoverBackgroundColor: "rgba(255,99,132,0.4)",
-      hoverBorderColor: "rgba(255,99,132,1)",
-      data: [65, 59, 80, 81, 56, 55, 40]
-    }
-  ]
+const getLabel = data => {
+  return Object.keys(data).map(e => {
+    return data[e].siteName
+  })
 }
 
-class Chart extends Component {
-  render() {
-    return (
-      <div>
-        <Bar
-          data={data}
-          width={100}
-          height={350}
-          options={{
-            maintainAspectRatio: false
-          }}
-        />
-      </div>
-    )
-  }
+const dataFormation = reportsBySiteName => {
+  const labels = getLabel(reportsBySiteName)
+  const datasets = [
+    {
+      label: "Report Dataset",
+      backgroundColor: "rgb(90, 103, 174)",
+      borderColor: "rgb(90, 103, 174)",
+      borderWidth: 1,
+      hoverBackgroundColor: "rgb(109, 185, 227)",
+      hoverBorderColor: "rgb(109, 185, 227)",
+      data: labels.map(e => reportsBySiteName[e].total)
+    }
+  ]
+
+  return { labels, datasets }
+}
+
+const Chart = props => {
+  return (
+    <div>
+      <Bar
+        data={dataFormation(props.reportsBySiteName)}
+        width={100}
+        height={350}
+        options={{
+          maintainAspectRatio: false
+        }}
+      />
+      {/* <Line data={dataFormation(props.reportsBySiteName)} /> */}
+    </div>
+  )
 }
 
 export default Chart
